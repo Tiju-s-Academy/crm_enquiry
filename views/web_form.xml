@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <template id="thank_you_template">
+        <title>Thank You</title>
         <t t-call="website.layout">
             <div class="container text-center mt-5">
                 <h2>Thank You for Your Enquiry!</h2>

@@ -23,9 +23,9 @@ class WebFormController(Controller):
         team = request.env['crm.team'].sudo().search([('name', '=', 'Sales Team Mavelikkara')], limit=1)
         course = request.env['product.product'].sudo().browse(int(course_id)) if course_id else False
 
-        source = request.env['utm.source'].sudo().search([('name', '=', 'Many2Chat')], limit=1)
+        source = request.env['utm.source'].sudo().search([('name', '=', 'ManyChat')], limit=1)
         if not source:
-            source = request.env['utm.source'].sudo().create({'name': 'Many2Chat'})
+            source = request.env['utm.source'].sudo().create({'name': 'ManyChat'})
 
         partner = request.env['res.partner'].sudo().create({
             'name': customer_name,
