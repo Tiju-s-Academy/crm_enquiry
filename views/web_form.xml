@@ -1,5 +1,6 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <odoo>
+    <!-- Thank You Template -->
     <template id="thank_you_template">
         <title>Thank You</title>
         <t t-call="website.layout">
@@ -7,106 +8,86 @@
                 <h2>Thank You for Your Enquiry!</h2>
                 <p>We have received your request and will contact you shortly. Stay tuned!</p>
             </div>
-
             <script type="text/javascript">
-                    window.onload = function () {
-                    console.log("working");
+                window.onload = function () {
+                    console.log("Thank You page loaded");
                     // Hide header and footer by their IDs
-                    const topElement = document.getElementById('top');
-                    const footerElement = document.getElementById('footer');
-                    const elements = document.querySelectorAll('.o_footer_copyright.o_colored_level.o_cc');
-                    elements.forEach(element => {
-                    element.style.display = "none";
+                    var topElement = document.getElementById('top');
+                    var footerElement = document.getElementById('footer');
+                    var elements = document.querySelectorAll('.o_footer_copyright.o_colored_level.o_cc');
+                    elements.forEach(function(element) {
+                        element.style.display = "none";
                     });
-                    console.log(footerElement);
-                    console.log(topElement);
-                    if (topElement) {
-                    topElement.style.display = "none";
-                    }
-                    if (footerElement) {
-                    footerElement.style.display = "none";
-                    }
-                    };
-                </script>
+                    if (topElement) { topElement.style.display = "none"; }
+                    if (footerElement) { footerElement.style.display = "none"; }
+                };
+            </script>
         </t>
     </template>
+
+    <!-- Course Enquiry Form Template -->
     <template id="course_enquiry_form_template">
         <title>Enquiry</title>
         <t t-call="website.layout">
             <t t-javascript="true">
                 <script type="text/javascript">
                     window.onload = function () {
-                    console.log("working");
-                    // Hide header and footer by their IDs
-                    const topElement = document.getElementById('top');
-                    const footerElement = document.getElementById('footer');
-                    const elements = document.querySelectorAll('.o_footer_copyright.o_colored_level.o_cc');
-                    elements.forEach(element => {
-                    element.style.display = "none";
-                    });
-                    console.log(footerElement);
-                    console.log(topElement);
-                    if (topElement) {
-                    topElement.style.display = "none";
-                    }
-                    if (footerElement) {
-                    footerElement.style.display = "none";
-                    }
+                        console.log("Course Enquiry form loaded");
+                        // Hide header and footer by their IDs
+                        var topElement = document.getElementById('top');
+                        var footerElement = document.getElementById('footer');
+                        var elements = document.querySelectorAll('.o_footer_copyright.o_colored_level.o_cc');
+                        elements.forEach(function(element) {
+                            element.style.display = "none";
+                        });
+                        if (topElement) { topElement.style.display = "none"; }
+                        if (footerElement) { footerElement.style.display = "none"; }
+
+                        // Set the source based on URL parameter; default is "doodle_ads"
+                        var urlParams = new URLSearchParams(window.location.search);
+                        var sourceParam = urlParams.get('source');
+                        if (sourceParam) {
+                            document.getElementById('source').value = sourceParam;
+                        }
                     };
                 </script>
             </t>
             <div id="wrap">
-                <br></br>
+                <br/>
                 <div class="container form-class">
                     <form action="/course_enquiry/submit" class="form_validate"
-                          enctype="multipart/form-data"
-                          method="POST">
-                        <input type="hidden" name="csrf_token"
-                               t-att-value="request.csrf_token()"/>
+                          enctype="multipart/form-data" method="POST">
+                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                        <!-- Hidden input for tracking ad source; default value is "doodle_ads" -->
+                        <input type="hidden" name="source" id="source" value="doodle_ads"/>
                         <div class="row">
                             <div class="col-12">
-                                <label>
-                                    <b>Your Name</b>
-                                </label>
-                                <input type="text" id="student"
-                                       class="form-control"
-                                       placeholder="Enter Your Name"
-                                       name="customer_name" required="1"/>
+                                <label><b>Your Name</b></label>
+                                <input type="text" id="student" class="form-control"
+                                       placeholder="Enter Your Name" name="customer_name" required="1"/>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <label>
-                                    <b>Phone Number</b>
-                                </label>
-                                <input type="text" id="phone_number"
-                                       class="form-control"
-                                       placeholder="Please Enter Your Phone Number"
-                                       name="phone_number" required="1"/>
+                                <label><b>Phone Number</b></label>
+                                <input type="text" id="phone_number" class="form-control"
+                                       placeholder="Please Enter Your Phone Number" name="phone_number" required="1"/>
                             </div>
                         </div>
-                        <br></br>
+                        <br/>
                         <div class="row">
                             <div class="col-12">
-                                <label>
-                                    <b>Your Email</b>
-                                </label>
-                                <input type="text" id="email"
-                                       class="form-control"
-                                       placeholder="Please Enter Your Email"
-                                       name="email"/>
+                                <label><b>Your Email</b></label>
+                                <input type="text" id="email" class="form-control"
+                                       placeholder="Please Enter Your Email" name="email"/>
                             </div>
                         </div>
-                        <br></br>
+                        <br/>
                         <div class="row">
                             <div class="col-12">
-                                <label>
-                                    <b>Course</b>
-                                </label>
+                                <label><b>Course</b></label>
                                 <select name="course_id" class="form-control" required="1">
-                                    <option value="" selected="true">
-                                        Select Your Course
-                                    </option>
+                                    <option value="" selected="true">Select Your Course</option>
                                     <t t-foreach="course" t-as="prd">
                                         <option t-att-value="prd.id">
                                             <t t-esc="prd.name"/>
@@ -115,14 +96,93 @@
                                 </select>
                             </div>
                         </div>
-                        <br></br>
+                        <br/>
+                        <div class="form-group col-12 btn-center new_div" align="center">
+                            <div style="width: 200px;" class="s_website_form_label"/>
+                            <button type="submit" class="btn btn-primary submit_btn" id="submitbtn">
+                                Submit
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </t>
+    </template>
+    <template id="course_details_form_template">
+        <title>Enquiry</title>
+        <t t-call="website.layout">
+            <t t-javascript="true">
+                <script type="text/javascript">
+                    window.onload = function () {
+                        console.log("Course Enquiry form loaded");
+                        // Hide header and footer by their IDs
+                        var topElement = document.getElementById('top');
+                        var footerElement = document.getElementById('footer');
+                        var elements = document.querySelectorAll('.o_footer_copyright.o_colored_level.o_cc');
+                        elements.forEach(function(element) {
+                            element.style.display = "none";
+                        });
+                        if (topElement) { topElement.style.display = "none"; }
+                        if (footerElement) { footerElement.style.display = "none"; }
 
-                        <div class="form-group col-12 btn-center new_div"
-                             align="center">
-                            <div style="width: 200px;"
-                                 class="s_website_form_label"/>
-                            <button type="submit" class="btn btn-primary submit_btn"
-                                    id="submitbtn">Submit
+                        // Set the source based on URL parameter; default is "doodle_ads"
+                        var urlParams = new URLSearchParams(window.location.search);
+                        var sourceParam = urlParams.get('source');
+                        if (sourceParam) {
+                            document.getElementById('source').value = sourceParam;
+                        }
+                    };
+                </script>
+            </t>
+            <div id="wrap">
+                <br/>
+                <div class="container form-class">
+                    <form action="/course_details/submit" class="form_validate"
+                          enctype="multipart/form-data" method="POST">
+                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                        <!-- Hidden input for tracking ad source; default value is "doodle_ads" -->
+                        <input type="hidden" name="source" id="source" value="doodle_ads"/>
+                        <div class="row">
+                            <div class="col-12">
+                                <label><b>Your Name</b></label>
+                                <input type="text" id="student" class="form-control"
+                                       placeholder="Enter Your Name" name="customer_name" required="1"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <label><b>Phone Number</b></label>
+                                <input type="text" id="phone_number" class="form-control"
+                                       placeholder="Please Enter Your Phone Number" name="phone_number" required="1"/>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <div class="col-12">
+                                <label><b>Your Email</b></label>
+                                <input type="text" id="email" class="form-control"
+                                       placeholder="Please Enter Your Email" name="email"/>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <div class="col-12">
+                                <label><b>Course</b></label>
+                                <select name="course_id" class="form-control" required="1">
+                                    <option value="" selected="true">Select Your Course</option>
+                                    <t t-foreach="course" t-as="prd">
+                                        <option t-att-value="prd.id">
+                                            <t t-esc="prd.name"/>
+                                        </option>
+                                    </t>
+                                </select>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="form-group col-12 btn-center new_div" align="center">
+                            <div style="width: 200px;" class="s_website_form_label"/>
+                            <button type="submit" class="btn btn-primary submit_btn" id="submitbtn">
+                                Submit
                             </button>
                         </div>
                     </form>
