@@ -86,9 +86,9 @@
                         <div class="row">
                             <div class="col-12">
                                 <label><b>Course</b></label>
-                                <select name="course_id" class="form-control" required="1">
+                                <select name="category_id" class="form-control" required="1">
                                     <option value="" selected="true">Select Your Course</option>
-                                    <t t-foreach="course" t-as="prd">
+                                    <t t-foreach="category" t-as="prd">
                                         <option t-att-value="prd.id">
                                             <t t-esc="prd.name"/>
                                         </option>
@@ -168,9 +168,9 @@
                         <div class="row">
                             <div class="col-12">
                                 <label><b>Course</b></label>
-                                <select name="course_id" class="form-control" required="1">
+                                <select name="category_id" class="form-control" required="1">
                                     <option value="" selected="true">Select Your Course</option>
-                                    <t t-foreach="course" t-as="prd">
+                                    <t t-foreach="category" t-as="prd">
                                         <option t-att-value="prd.id">
                                             <t t-esc="prd.name"/>
                                         </option>
