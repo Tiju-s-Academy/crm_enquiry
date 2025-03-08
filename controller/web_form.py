@@ -8,7 +8,7 @@ class WebFormController(Controller):
     @route('/course_enquiry', auth='public', website=True)
     def create_enquiry2(self):
         category = request.env['product.category'].sudo().search([
-            ('name', 'not in', ['All', 'Expenses'])
+            ('name', 'not in', ['All', 'Deliveries','Expenses','Saleable','Courses','Events','DM','Hostel','NC'])
         ])
         values = {
             'category': category,
@@ -53,7 +53,7 @@ class WebFormController(Controller):
     @route('/course_details', auth='public', website=True)
     def create_enquiry(self):
         category = request.env['product.category'].sudo().search([
-            ('name', 'not in', ['All', 'Expenses'])
+            ('name', 'not in', ['All', 'Deliveries','Expenses','Saleable','Courses','Events','DM','Hostel','NC'])
         ])
         values = {
             'category': category,
