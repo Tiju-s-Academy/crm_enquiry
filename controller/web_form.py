@@ -5,6 +5,10 @@ class WebFormController(Controller):
     def helpdesk_request_web_form(self, **kwargs):
         return request.render('crm_enquiry.thank_you_template')
 
+    @route('/thanks2', auth='public', website=True)
+    def helpdesk_request_web_form(self, **kwargs):
+        return request.render('crm_enquiry.re_submit_thank_you_template')
+
     @route('/course_enquiry', auth='public', website=True)
     def create_enquiry2(self):
         category = request.env['product.category'].sudo().search([
@@ -67,6 +71,13 @@ class WebFormController(Controller):
         phone = post.get('phone_number')
         email = post.get('email')
         category_id = post.get('category_id')
+
+        existing_partner = request.env['res.partner'].sudo().search([('phone', '=', phone)], limit=1)
+
+        if existing_partner:
+            return request.redirect('/thanks2')
+
+
         team = request.env['crm.team'].sudo().search([('name', '=', 'Sales Team Mavelikkara')], limit=1)
 
         source = request.env['utm.source'].sudo().search([('name', '=', 'Google Ads')], limit=1)

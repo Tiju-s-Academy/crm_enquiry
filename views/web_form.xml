@@ -24,6 +24,29 @@
             </script>
         </t>
     </template>
+    <template id="re_submit_thank_you_template">
+        <title>Thank You</title>
+        <t t-call="website.layout">
+            <div class="container text-center mt-5">
+                <h2>Thank You for Your Enquiry!</h2>
+                <p>We have already received your enquiry. Our team will contact you shortly</p>
+            </div>
+            <script type="text/javascript">
+                window.onload = function () {
+                    console.log("Thank You page loaded");
+                    // Hide header and footer by their IDs
+                    var topElement = document.getElementById('top');
+                    var footerElement = document.getElementById('footer');
+                    var elements = document.querySelectorAll('.o_footer_copyright.o_colored_level.o_cc');
+                    elements.forEach(function(element) {
+                        element.style.display = "none";
+                    });
+                    if (topElement) { topElement.style.display = "none"; }
+                    if (footerElement) { footerElement.style.display = "none"; }
+                };
+            </script>
+        </t>
+    </template>
 
     <!-- Course Enquiry Form Template -->
     <template id="course_enquiry_form_template">
