@@ -120,6 +120,17 @@
                             </div>
                         </div>
                         <br/>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-check">
+                                    <input type="checkbox" id="authorization" name="authorization" class="form-check-input" required="1"/>
+                                    <label for="authorization" class="form-check-label">
+                                        I authorise Tiju's Academy &amp; its representatives to contact me with updates and notifications via Email/SMS/WhatsApp/Call.
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <br/>
                         <div class="form-group col-12 btn-center new_div" align="center">
                             <div style="width: 200px;" class="s_website_form_label"/>
                             <button type="submit" class="btn btn-primary submit_btn" id="submitbtn">
@@ -199,6 +210,17 @@
                                         </option>
                                     </t>
                                 </select>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-check">
+                                    <input type="checkbox" id="authorization" name="authorization" class="form-check-input" required="1"/>
+                                    <label for="authorization" class="form-check-label">
+                                        I authorise Tiju's Academy &amp; its representatives to contact me with updates and notifications via Email/SMS/WhatsApp/Call.
+                                    </label>
+                                </div>
                             </div>
                         </div>
                         <br/>
